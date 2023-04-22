@@ -2,7 +2,7 @@
 
 ![Components](components.png)
 
-The driver as with other INDI drivers can be on the same host as the Ekos client or remote on a different computer located in the observatory. 
+The driver as with other INDI drivers can be on the same host as the Ekos client or remote on a different computer located in the observatory. [ Edit to remove WiFi and the Arduino ] 
 
 # The driver
 
@@ -40,9 +40,9 @@ The options panel is for the setting of the standard driver INDI options and for
 ## Weather protection.
 The driver will interact with the Ekos weather monitoring applications or DIY local sensors and the watchdog timer along with the other dome related drivers.
 
+## Notes on using a Raspberry Pi to directly interface to a roof controller
 Using a commercial controller simplifies the design. A controller can provide proper sizing of the motor for the size and weight of the roof. Provide obstruction protection, enforce range limits, variable force adjustments, slow start and slow stop to lessen the impact of sudden activation to get the roof moving. Some models will run off solar power and the choice of chain or track. With a controller that can be activated by a single or a pair of on/off button it is a simple job to wire a relay in parallel to emulate the pushing of a button. There is built in support in the example relay code to temporarily close a relay for a particular length of time. Such controllers have their own way of detecting the end of roof travel in order to stop movement. Additional switches are required to notify when the roof is fully opened or fully closed.
 
-## Notes on using a Raspberry Pi to directly interface to a roof controller
 The Arduino approach uses a single purpose controller to provide flexibility of custom programming. An Arduino Will run for months without maintenance requirement, provides auto startup after power failure and flexible placement. It does require code definition changes if the pin assignments differ from the defaults provided. There is also the need to learn how to build and test using the Arduino IDE.
 
 The purpose of the Raspberry Pi version of the roof driver is to eliminate the use of an Arduino in those situations where the Arduino is in turn using an external controller. There will be a user interface for making the pin assignments and avoid the need to customise any code. This note outlines the prerequisites and limitations along with what was learned using gpio pins during testing.
@@ -83,7 +83,7 @@ Position INPSWITCH3    Function LOCKED    Pin 24    Mode Input   Activate Low   
 Position INPSWITCH4    Function AUXSTATE  Pin 25    Mode Input   Activate Low   Resistor pull up
 
 ```
-## Additional requirement for Raspberry Pi using the GPIO pins.
+## Installation requirements for Raspberry Pi using the GPIO pins.
 
 The approach for supporting the GPIO pins without the need to run as root is to use the pigpio libraries and to run the pigpiod daemon system service. Tested on Raspberry Pi 3 Bullseye/Raspberry Pi 32 bit OS. Also tested on a Raspberry Pi 4 using ubuntu 22.04 64 bit.
 
